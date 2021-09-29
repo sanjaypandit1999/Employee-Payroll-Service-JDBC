@@ -1,9 +1,6 @@
 package com.bridgelabz;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class EmployeePayRollService {
     public static void main(String[] args) {
@@ -17,10 +14,12 @@ public class EmployeePayRollService {
            String CREATE_TABLE = "Create Table employee_payroll (id int NOT NULL AUTO_INCREMENT, name VARCHAR(150) NOT NULL,salary Double NOT NULL,start DATE NOT NULL, PRIMARY KEY (id))";
            String INSERT_DATA = "insert into employee_payroll (name,salary,start) values ('Sanjay',30000,'2021-08-15'),('Aviral',30000,'2021-06-21'),('Prem',40000,'2021-03-22')";
            String FETCH_QUERY = "select * from employee_payroll";
-            //Create platform
-            preparedStatement = connection.prepareStatement(FETCH_QUERY);
-            preparedStatement.executeQuery();
-            System.out.println("Query Executed");
+           String SELECT_QUERY = "select salary from employee_payroll where name='Sanjay'";
+           String SELECT_DATE_RANGE = "select * from employee_payroll where start between cast('2019-01-01' as date) and date(now())";
+           //Create platform
+            preparedStatement = connection.prepareStatement(SELECT_DATE_RANGE);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println("row is updated");
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
