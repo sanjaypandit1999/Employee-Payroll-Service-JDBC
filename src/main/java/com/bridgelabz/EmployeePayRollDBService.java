@@ -6,11 +6,11 @@ import java.util.List;
 
 import static com.config.DbConfig.getDbConfig;
 
-public class EmployeePayRollService {
+public class EmployeePayRollDBService implements EmploeePayRollInterface{
         List<Employee> empList;
         PreparedStatement preparedStatement;
         Connection connection = getDbConfig();
-    public List<Employee> queryExecute(String query) {
+    public List<Employee> readData(String query) {
         empList = new ArrayList<>();
         try {
             preparedStatement = connection.prepareStatement(query);
